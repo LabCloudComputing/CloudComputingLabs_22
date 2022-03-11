@@ -100,6 +100,8 @@ The HTTP server should be able to handle HTTP POST requests.
 
 For a POST request, the server needs to check whether the path of request corresponds to a web service.
 
+> For special characters, like `%`, you may need google about **percent encoding**.
+
 What you need to do:
 
 **basic version**:
@@ -123,6 +125,8 @@ What you need to do:
 
 * If the path is invalid
   * Send response with the full content of `404 Not Found` page.
+
+If you are not familiered with `application/x-www-form-urlencoded`, `multipart/form-data`, check [MDN docs](https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data).
 
 #### 3.1.3 Other request
 
@@ -262,7 +266,6 @@ For **advanced** version:
 | [/\*]/\*.json | /`{static dir}`[/\*]/\*.json | 200 | application/json |
 | any other error paths | /`{static dir}`/404.html | 404 | text/html |
 
-
 ```
 user@linux:~/http-server$ curl -i -X GET http://localhost:8080/data.json
 HTTP/1.1 200 OK
@@ -299,6 +302,8 @@ For **advanced** version:
 | /api/search?[id=`value1`&name=`value2`] | all objects that match <br /> `*.id == value1 && *.name == value2` <br /> in `/data/data.json` | 200 | application/json |
 | /api/search?[id=`value1`&name=`value2`] | if no object matches, return all objects <br /> in `/data/not_found.json` | 404 |application/json |
 | any other error paths | /{static files}/404.html | 404 | text/html |
+
+> If you do not want to parse json file, you could store the data in memory instead of reading file every time.
 
 E.g.:
 
