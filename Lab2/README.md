@@ -8,7 +8,7 @@ You can find this lab2's instruction in `Lab2/README.md`
 
 All materials of lab2 are in folder `Lab2/`.
 
-## 1. Overview
+# 1. Overview
 
 Implement an HTTP server based on HTTP/1.1 from scratch by your own, using network programming knowledges learned from our class. 
 
@@ -19,13 +19,13 @@ Also, try to use high concurrency programming skills learned from the class to g
 * Practice basic network programming skills, such as using socket API, parsing packets;
 * Get familiar with robust and high-performance concurrent programming.
 
-## 2. Backround
+# 2. Backround
 
 **Please check [background.md](./background.md) first to learn some basics about `HTTP`, `HTTP messages` , `HTTP proxy`, `JSON` & `curl`.**
 
-## 3. Your Lab Task
+# 3. Your Lab Task
 
-### Implement your own HTTP Server
+## Implement your own HTTP Server
 
 In this Lab, we won't provide any basic code. You should implement a HTTP server based on HTTP/1.1, from scratch which satisfies the following requirements:
 
@@ -45,14 +45,16 @@ The server will be in either non-proxy mode or proxy mode (we have introduced th
 
 In order to better test and score, we have made **some functional requirements** for your submitted works.
 
-#### 3.1 Handle HTTP request & send HTTP response
+### 3.1 Handle HTTP request & send HTTP response
 
 In this Lab, **you just need to implement the GET method and the POST method in your HTTP server**. 
 
 For any other methods, your server should send a response with 501 status code (see `2.2`).
-That is to say, if your HTTP server receive a HTTP request but the request method is neither GET nor POST, the HTTP server just need to return a 501 Not Implemented error message (a response message with Response line having status code to be 501, see `2.2`). 
+That is to say, if your HTTP server receive a HTTP request but the request method is neither GET nor POST, the HTTP server just need to return a 501 Not Implemented error message (a response message with Response line having status code to be 501, see `2.2`).
 
-##### 3.1.1 Handle HTTP GET request
+See examples in section [3.7](#37-access-your-http-server).
+
+#### 3.1.1 Handle HTTP GET request
 
 The HTTP server should be able to handle HTTP GET requests for specific resources, e.g., web service data & static files.
 
@@ -92,9 +94,7 @@ What you need to do:
 
 *You don't need to implement to transmit base64 encoded binary files, such as image files like `*.png`.* 
 
-See examples in section [3.7.1](#361-using-get-method).
-
-##### 3.1.2 Handle HTTP POST request
+#### 3.1.2 Handle HTTP POST request
 
 The HTTP server should be able to handle HTTP POST requests.
 
@@ -124,15 +124,11 @@ What you need to do:
 * If the path is invalid
   * Send response with the full content of `404 Not Found` page.
 
-See examples in section `3.7.2`.
-
-##### 3.1.3 Other request
+#### 3.1.3 Other request
 
 Just return 501 Not Implemented page for other request method (e.g. DELETE, PUT, etc.).
 
-See examples in section `3.7.3`.
-
-#### 3.2 Implement a proxy server (optional for advanced version)
+### 3.2 Implement a proxy server (optional for advanced version)
 
 Enable your server to proxy HTTP requests to another HTTP server and forward the responses to the clients.
 
@@ -152,7 +148,7 @@ Hints: 1) This is more tricky than writing to a file or reading from stdin, sinc
 > 
 > However, if you are interested in protocols such as HTTPS, you can try to use other libraries, e.g. openssl. 
 
-#### 3.3 Use multi-thread to increase concurrency
+### 3.3 Use multi-thread to increase concurrency
 
 Your HTTP server should use multiple threads to handle as many concurrent clients' requests as possible. You have at least the following three options to architect your multi-thread server:
 
@@ -164,13 +160,13 @@ Your HTTP server should use multiple threads to handle as many concurrent client
 
 Feel free to choose any one from the above three, or use other multi-thread architecture that you think is cool.
 
-#### 3.4 Support HTTP pipelining
+### 3.4 Support HTTP pipelining
 
 In the basic version, you have **only one request per TCP connection going on at the same time**. The client waits for response, and when it gets response, perhaps reuses the TCP connection for a new request (or use a new TCP connection). This is also what normal HTTP server supports.
 
 In the advanced version, **multiple http requests can be fired concurrently on one TCP connection**. This is also called HTTP pipelining which is supported by many real browsers and servers (such as Chrome). Note that HTTP requests that come from the same TCP connection should be responded in the same order. So take care the order problem when using complex multi-thread styles. 
 
-#### 3.5 Specify arguments
+### 3.5 Specify arguments
 
 Your program should enable long options to accept arguments and specify those arguments during start.
 
@@ -187,7 +183,7 @@ The `--proxy` can have a schema before `://` and a port number after a colon (e.
 
 If you have no idea about *long options*, you can read [this](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html#Argument-Syntax). And you may need to use some functions like `getopt_long()`, `getopt_long_only()`, `getopt()` and so on. Check those function's usage with the `man` command.
 
-#### 3.6 Run your HTTP Server
+### 3.6 Run your HTTP Server
 
 **For advanced version**:
 
@@ -209,7 +205,7 @@ It means that this is an HTTP proxy server. This proxy's IP address is 127.0.0.1
 
 When you run the command above, your HTTP server should run correctly.
 
-#### 3.7 Access Your HTTP Server
+### 3.7 Access Your HTTP Server
 
 We assume that the ip the server bound is `127.0.0.1` and the port is `8080`. If proxy is used, the server is `www.example.com`.
 
@@ -219,7 +215,7 @@ That's why we provide some standard static files. You can check those files in `
 
 Please make sure your server supports accessing them, and **do not modify their content or relative paths**.
 
-##### 3.7.1 Using GET method
+#### 3.7.1 Using GET method
 
 **1) access static files**
 
@@ -316,7 +312,7 @@ Content-Length: 25
 [{"id":"1","name":"Foo"}]%  
 ```
 
-##### 3.7.2 Using POST method
+#### 3.7.2 Using POST method
 
 **access /api/upload for upload data**
 
@@ -377,13 +373,13 @@ Content-Length: 23
 {"id":"1","name":"Foo"}
 ```
 
-##### 3.7.3 Other method
+#### 3.7.3 Other method
 
 The HTTP server will not handle HTTP requests except GET requests and POST requests.
 
 If you send a HTTP request with `DELETE` (or `PUT`, `HEAD`, etc.)  to delete the specified resource, your server should send `/{static dir}/501.html`:
 
-#### 3.8 Implementation requirements
+### 3.8 Implementation requirements
 
 **Version**
 
@@ -407,7 +403,7 @@ The test report should describe the performance result under various testing con
 
 **[NOTE]**: Be careful that clients may be the performance bottleneck. So you'd better use multiple machines when testing the performance. For example, you can run multiple client processes on three machines (of three group members), and run the server process on another machine (of the other group member). Moreover, the network can be the bottleneck too. You can estimate the performance limit according to the physical bandwidth of your network environment, and see if your implementation can reach the performance limit. 
 
-## 4. Tester & judger
+# 4. Tester & judger
 
 We  provide some tools for testing & judging. 
 
@@ -415,13 +411,13 @@ You can check the repos of them: [tester](https://github.com) & [judger](https:/
 
 Of course you can also use your own browser and other web tools like curl.
 
-## 5. Lab submission
+# 5. Lab submission
 
 Please put all your code in folder `Lab2` and write a `Makefile` so that we **can compile your code in one single command** `make`. The compiled runnable executable binary should be named `http-server` and located in folder `Lab2`. Please carefully following above rules so that TAs can automatically test your code!!!
 
 Please submit your lab program and performance test report following the guidance in the [Overall Lab Instructions](../README.md) (`../README.md`)
 
-## 6. Grading standards
+# 6. Grading standards
 
 * You can get 28 points if you can: 
    * finish all the requirements of the basic version
