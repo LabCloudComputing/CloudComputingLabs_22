@@ -118,7 +118,7 @@ What you need to do:
 **advanced version**:
 
 * A upload service: use a specific url to upload some data from the server that does not come from a file stored on the file system.
-  * The content type is `application/x-www-form-urlencoded`, `multipart/form-data`, `application/json`;
+  * The content type is `application/x-www-form-urlencoded`, `application/json`;
   * The payload contains key-value pairs, keys are `id` & `name`;
   * If the payload is valid, send response with `200 OK`, `Content-Type: application/json` & data;
   * Or if the payload invalid, send response with send response with `200 OK`, `Content-Type: application/json` & error messages;
@@ -126,7 +126,7 @@ What you need to do:
 * If the path is invalid
   * Send response with the full content of `404 Not Found` page.
 
-If you are not familiered with `application/x-www-form-urlencoded`, `multipart/form-data`, check [MDN docs](https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data).
+If you are not familiered with `application/x-www-form-urlencoded`, check [MDN docs](https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data).
 
 #### 3.1.3 Other request
 
@@ -280,25 +280,25 @@ For **basic** version:
 
 | path | get data | status code | content type |
 | --- | --- | --- | --- |
-| /api/search | strings in `data.txt` | 200 | text/plain |
+| /api/check | strings in `data.txt` | 200 | text/plain |
 | any other error paths | /{static files}/404.html | 404 | text/html |
 
 E.g.:
 
 ```shell
-user@linux:~/http-server$ curl -i -X GET http://localhost:8080/api/search
+user@linux:~/http-server$ curl -i -X GET http://localhost:8080/api/check
 HTTP/1.1 200 OK
 Content-Type: text/plain
-Content-Length: 59
+Content-Length: 13
 
-id=1&name=Foo&id=2&name=Bar&id=3&name=Foo+Bar&id=4&name=Foo  
+id=1&name=Foo
 ```
 
 For **advanced** version:
 
 | path | get data | status code | content type |
 | --- | --- | --- | --- |
-| /api/search | all objects in `data.json` | 200 | application/json |
+| /api/list | all objects in `data.json` | 200 | application/json |
 | /api/search?[id=`value1`&name=`value2`] | all objects that match <br /> `*.id == value1 && *.name == value2` <br /> in `/data/data.json` | 200 | application/json |
 | /api/search?[id=`value1`&name=`value2`] | if no object matches, return all objects <br /> in `/data/not_found.json` | 404 |application/json |
 | any other error paths | /{static files}/404.html | 404 | text/html |
@@ -314,7 +314,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 25
 
-[{"id":"1","name":"Foo"}]%  
+[{"id":"1","name":"Foo"}] 
 ```
 
 #### 3.7.2 Using POST method
@@ -333,8 +333,8 @@ After handling, send response:
 
 | path | content | status code | content type |
 | --- | --- | --- | --- |
-| /api/upload | echo the data received | 200 | application/x-www-form-urlencoded |
-| /api/upload | if the data format is error, send strings <br /> in `/data/error.txt` |  404 | text/plain |
+| /api/echo | echo the data received | 200 | application/x-www-form-urlencoded |
+| /api/echo | if the data format is error, send strings <br /> in `/data/error.txt` |  404 | text/plain |
 | any other error paths | /{static files}/404.html | 404 | text/html |
 
 E.g.:
@@ -354,7 +354,6 @@ For **advanced** version:
 
 The client should send requests with `Content-Type`:
   * `application/x-www-form-urlencoded`,
-  * `multipart/form-data`,
   * `application/json`.
 
 After handling, send response:

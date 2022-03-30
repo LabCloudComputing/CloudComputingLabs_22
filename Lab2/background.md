@@ -300,7 +300,7 @@ curl -i -G -d 'id=1&name=Foo' -X GET http://localhost:8080/api/search
 
 ```shell
 curl -i -d 'id=1&name=Foo'
-    -H ‘Content-Type: application/x-www-form-urlencoded'
+    -H 'Content-Type: application/x-www-form-urlencoded'
     -X POST http://localhost:8080/api/upload
 ```
 
