@@ -217,7 +217,7 @@ We assume that the ip the server bound is `127.0.0.1` and the port is `8080`. If
 
 For more efficient testing and scoring, we need you to implement some of the interfaces described below, and make sure that the content of the response is consistent with our expectations.
 
-That's why we provide some standard static files. You can check those files in `./static/` & `./data/`.
+**That's why we provide some standard static files. You can check those files in `./static/` & `./data/`.**
 
 Please make sure your server supports accessing them, and **do not modify their content or relative paths**.
 
