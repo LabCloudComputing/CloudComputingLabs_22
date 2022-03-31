@@ -45,6 +45,8 @@ The server will be in either non-proxy mode or proxy mode (we have introduced th
 
 In order to better test and score, we have made **some functional requirements** for your submitted works.
 
+**ATTENTION**: Lab 2 is a pre-lab of Lab 4. If you plan to complete Lab 4, please complete **the advanced version** of Lab 2. 
+
 ### 3.1 Handle HTTP request & send HTTP response
 
 In this Lab, **you just need to implement the GET method and the POST method in your HTTP server**. 
@@ -65,7 +67,7 @@ What you need to do:
 **basic version**:
 
 * A search service: use a specific url to get some data from the server that does not come from a file stored on the file system.
-  * The url don't have query string, e.g. `http://localhost:8080/search`;
+  * The url don't have query string, e.g. `http://localhost:8080/check`;
   * Send response with plain text content.
 
 * Static files access: use a specific url to access a text file stored on the file system.
@@ -211,7 +213,7 @@ When you run the command above, your HTTP server should run correctly.
 
 ### 3.7 Access Your HTTP Server
 
-We assume that the ip the server bound is `127.0.0.1` and the port is `8080`. If proxy is used, the server is `www.example.com`.
+We assume that the ip the server bound is `127.0.0.1` and the port is `8080`. If the proxy feature is used, the remote server is `www.example.com`.
 
 For more efficient testing and scoring, we need you to implement some of the interfaces described below, and make sure that the content of the response is consistent with our expectations.
 
@@ -272,9 +274,9 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 101
 
-[{"id":"1","name":"Foo"},{"id":"2","name":"Bar"},{"id":"3","name":"Foo Bar"},{"id":"4","name":"Foo"}]%  
+[{"id":"1","name":"Foo"},{"id":"2","name":"Bar"},{"id":"3","name":"Foo Bar"},{"id":"4","name":"Foo"}]
 ```
-**2) access /api/search for get data**
+**2) access web services for getting data**
 
 For **basic** version:
 
@@ -319,7 +321,7 @@ Content-Length: 25
 
 #### 3.7.2 Using POST method
 
-**access /api/upload for upload data**
+**access web services for uploading data**
 
 all data you need to upload are two key/value pairs: `id: {value1}` & `name: {value2}`.
 
@@ -361,7 +363,7 @@ After handling, send response:
 | path | content | status code | content type |
 | --- | --- | --- | --- |
 | /api/upload | echo the data received | 200 | application/json |
-| /api/upload | if the data format is error, send strings <br /> in `/data/error.json` | 404 | text/json |
+| /api/upload | if the data format is error, send strings <br /> in `/data/error.json` | 404 | application/json |
 | any other error paths | /{static files}/404.html | 404 | text/html |
 
 E.g.:
@@ -411,7 +413,7 @@ The test report should describe the performance result under various testing con
 
 We  provide some tools for testing & judging. 
 
-You can check the repos of them: [tester](https://github.com) & [judger](https://github.com).
+You can check the repos of them: [tester](https://github.com/LabCloudComputing/http-server-tester) & [judger - not finished yet](https://github.com).
 
 Of course you can also use your own browser and other web tools like curl.
 
