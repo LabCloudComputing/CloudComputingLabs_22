@@ -155,14 +155,14 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 #### Student
 
 | id(key) | name |
-| --- | --- | --- |
+| --- | --- |
 | string | string |
 | "211926010111" | "张三" |
 
 #### Course Selection
 
 | Course id(key-1) | Student id(key-2) |
-| --- | --- | --- |
+| --- | --- |
 | string | string |
 | "CS06142" | "211926010111" |
 
