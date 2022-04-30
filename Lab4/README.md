@@ -116,7 +116,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 对于 payload 格式或数据非法，无法查询到相关信息，课程已满 等错误情况，返回包含错误信息的 JSON 对象即可。
 
 | case | status code | response content type | response body |
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 ##### /api/drop
