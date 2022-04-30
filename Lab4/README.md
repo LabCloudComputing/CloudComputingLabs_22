@@ -55,7 +55,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 查询后给出的数据至少需要包含课程的 编号，名称，容量和已选人数，这些数据包裹在 JSON 格式对象中，形式如下：
 
 | query string | status code | response content type | response body | 
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | id=[course id] | 200 | application/json | {"status":"ok","data":{"id":`course id`,"name": `course name`,"capacity":`capacity`,"selected":`selected`} |
 
 特别的，如果需要查询全部课程，`query string` 中可选择携带 `all`。
@@ -63,13 +63,13 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 与查询单个课程类似，但其 `data` 字段的值从单个课程信息变为了包含所有课程信息的数组。
 
 | query string | status code | response content type | response body | 
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | all | 200 | application/json | {"status":"ok", "data":[{"id":`course id`,"name": `course name`,"capacity":`capacity`,"selected":`selected`}, ...] |
 
 对于 query string 格式或数据非法，无法查询到相关信息 等错误情况，返回包含错误信息的 JSON 对象即可。
 
 | case | status code | response content type | response body |
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 ##### /api/search/student
@@ -83,7 +83,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 查询后给出的数据至少需要包含学生的 学号，姓名，所选的课程编号，这些数据包裹在 JSON 格式对象中，形式如下：
 
 | query string | status code | response content type | response body | 
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | id=[student id] | 200 | application/json | {"status":"ok","data":{"id":`student id`,"name": `student name`,"courses":[{"id"=`course id a`, "name": `course name a`},...} |
 
 > 如果学生未选课程， `data.course = []` 即可。
@@ -91,7 +91,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 对于 query string 格式或数据非法，无法查询到相关信息 等错误情况，返回包含错误信息的 JSON 对象即可。
 
 | case | status code | response content type | response body |
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 #### POST
