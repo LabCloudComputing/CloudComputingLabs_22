@@ -41,7 +41,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 #### Command Line Arguments
 
-由于你的 Web 服务器需要连接上存储服务器，同时为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：
+由于你的 Web 服务器需要连接上存储服务器，同时为了更好地统一测试，我们需要你的 Web 服务器采用标准的配置文件启动，如：
 
 `web-server --ip 127.0.0.1 --port 8080 --config_path web-server.conf`
 
