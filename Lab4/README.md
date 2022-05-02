@@ -49,7 +49,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 > 除了特定的 `api` 之外，Web 服务器仍需要支持静态文件访问等基本功能（如支持显示 html 页面，非法 path 返回 404 页面等），在此略去介绍，具体信息可参考 Lab 2。
 
-> 我们对 `api` 的设计进行了非常多的简化，现实中将会远比它们复杂，你可以使用要求以外的 path 扩展你的系统。 
+> 我们对 `api` 的设计进行了非常多的简化，现实中将会远比它们复杂，你可以使用要求以外的 path 扩展你的系统，如：你可以自行设计报错信息。 
 
 ##### /api/search/course
 
@@ -215,7 +215,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：`load-balancer --config_path load-balancer.conf`
 
-对于 `load-balancer.conf`，需要包含你打算启动的 Web 服务器的信息，如：
+对于 `load-balancer.conf`，需要包含将接受负载均衡的 Web 服务器信息，如：
 
 ```
 127.0.0.1:8080
@@ -259,7 +259,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
    
 3. 可执行文件分为 Web 服务器 和 存储器集群两个部分，其中
     -  Web 服务器可执行文件为 `web-server`，支持 `--ip`, `--port` 等命令行参数 
-    -  存储器 可执行文件为 `store-system`，支持 `--config_path` 等命令行参数，并使用配置文件 `coordinator.conf` 或 `participant.conf` 进行配置
+    -  存储器 可执行文件为 `store-server`，支持 `--config_path` 等命令行参数，并使用配置文件 `coordinator.conf` 或 `participant.conf` 进行配置
     - 测试中，每个集群的存储服务器数量为 4。
     - 如果你实现了 `Load Balancer`，其可执行文件请命名为 `load-balancer`，支持 `--config_path` 等命令行参数
 
