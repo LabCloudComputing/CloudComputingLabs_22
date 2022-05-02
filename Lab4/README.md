@@ -1,4 +1,4 @@
-# Lab4: A Distributed Course Selection System
+# Lab4: A High Performance Course Selection System
 
 ## 1. Overview
 
