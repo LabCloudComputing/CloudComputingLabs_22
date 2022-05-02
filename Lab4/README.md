@@ -77,7 +77,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 | case | status code | response content type | response body |
 | --- | --- | --- | --- |
-| valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
+| invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 ##### /api/search/student
 
@@ -99,7 +99,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 | case | status code | response content type | response body |
 | --- | --- | --- | --- |
-| valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
+| invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 #### POST
 
@@ -124,7 +124,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 | case | status code | response content type | response body |
 | --- | --- | --- | --- |
-| valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
+| invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 ##### /api/drop
 
@@ -142,7 +142,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 | case | status code | response content type | response body |
 | --- | --- | --- | --- |
-| valid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
+| invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
 ## 3.2 Database
 
