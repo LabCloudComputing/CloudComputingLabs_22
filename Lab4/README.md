@@ -213,7 +213,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 为了更好的实现负载均衡器，你可能需要查阅一些资料，并选择一些合适的调度算法。
 
-为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：`load-balancer --config_path load-balancer.conf`
+为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：`load-balancer --ip 127.0.0.1 --port 8080 --config_path load-balancer.conf`
 
 对于 `load-balancer.conf`，需要包含将接受负载均衡的 Web 服务器信息，如：
 
@@ -261,7 +261,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
     -  Web 服务器可执行文件为 `web-server`，支持 `--ip`, `--port` 等命令行参数 
     -  存储器 可执行文件为 `store-server`，支持 `--config_path` 等命令行参数，并使用配置文件 `coordinator.conf` 或 `participant.conf` 进行配置
     - 测试中，每个集群的存储服务器数量为 4。
-    - 如果你实现了 `Load Balancer`，其可执行文件请命名为 `load-balancer`，支持 `--config_path` 等命令行参数
+    - 如果你实现了 `Load Balancer`，其可执行文件请命名为 `load-balancer`，支持 `--ip --port --config_path` 等命令行参数
 
 > 可执行文件与配置文件的要求可以参考 Lab2, Lab 3。
 
