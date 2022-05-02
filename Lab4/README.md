@@ -213,7 +213,9 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 为了更好的实现负载均衡器，你可能需要查阅一些资料，并选择一些合适的调度算法。
 
-为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：`load-balancer --ip 127.0.0.1 --port 8080 --config_path load-balancer.conf`
+为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：
+
+`load-balancer --ip 127.0.0.1 --port 8080 --config_path load-balancer.conf`
 
 对于 `load-balancer.conf`，需要包含将接受负载均衡的 Web 服务器信息，如：
 
