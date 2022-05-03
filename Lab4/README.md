@@ -202,42 +202,74 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 | --- | --- | --- | --- |
 | invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
-## 4.2 Database
+### 4.2 Store Server
 
-### Tables
+#### Command Lines Arguments
+
+由于我们系统使用了默认数据，所以你的存储器应该在启动时，对这些数据进行读取。
+
+> 默认数据可以在 `data/` 文件夹中找到。
+
+为此，我们要求你的配置文件内新增两行配置指令，用于读取 course 与 student 的信息。
+
+例如：
+
+对 2pc 版本，
+
+```
+course ./data/courses.txt
+student ./data/students.txt
+mode coordinator
+coordinator_info 127.0.0.1:8001
+participant_info 127.0.0.1:8002 
+participant_info 127.0.0.1:8003 
+participant_info 127.0.0.1:8004
+```
+
+对 raft 版本，
+
+```
+course ./data/courses.txt
+student ./data/students.txt
+mode participant
+participant_info 127.0.0.1:8002
+coordinator_info 127.0.0.1:8001
+```
+
+#### Database Tables
 
 数据库的基础格式是关系型数据库，你也可以根据需要增添修改数据的类型，也可以选择设计新类型的数据库，但必须保证通过数据库可以正常完成需要的功能。
 
 **用于标准化测试的数据，将在仓库中提供。**
 
-#### Course
+##### Course
 
 | id(key) | name | capacity | selected |
 | --- | --- | --- | --- |
 | string | string | int | int |
 | "CS06142" | "云计算技术" | 120 | 120 |
 
-#### Student
+##### Student
 
 | id(key) | name |
 | --- | --- |
 | string | string |
 | "211926010111" | "张三" |
 
-#### Course Selection
+##### Course Selection
 
 | Course id(key-1) | Student id(key-2) |
 | --- | --- |
 | string | string |
 | "CS06142" | "211926010111" |
 
-### Commands
+#### Commands
 
 正常情况下，用户访问数据仅通过前端的 HTTP Web 服务器，而数据查询由 Web 服务器与数据库集群进行交互。
 
 以下给出的数据库命令仅供参考，你可以选择自己实现一个满足相同基本功能的命令集。
 
-#### Check Courses Capacity
+##### Check Courses Capacity
 
 发送 `GET Course [course id]\n`, e.g., `GET Course CS06142\n`；
 
@@ -249,27 +281,27 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 返回 **多行** `[course id] [course name] [course capacity] [selected number]\n`, e.g., `CS04008 计算机网络 90 80\nCS06142 云计算技术 120 120\n`。
 
-#### Check Student Selected Courses
+##### Check Student Selected Courses
 
 发送 `GET Student Courses [student id]\n`, e.g., `GET Student Courses 211926010111\n`；
 
 返回 **多行** `[course id] [course name]\n`, e.g., `CS04008 计算机网络\nCS06142 云计算技术\n`。
 
-#### Choose a Course
+##### Choose a Course
 
 发送 `ADD Student Course [student id] [course id]\n`, e.g., `ADD Student Course 211926010111 CS06142\n`；
 
 如果成功，返回 `+OK`; 如果失败，返回 `-ERROR`。
 
-#### Drop a Course
+##### Drop a Course
 
 发送 `DEL Student Course [student id] [course id]\n`, e.g., `DEL Student Course 211926010111 CS06142\n`；
 
 如果成功，返回 `+OK`; 如果失败，返回 `-ERROR`。
 
-## 3.3 Load Balancer
+### 3.3 Load Balancer
 
-### Command Line arguments
+#### Command Line arguments
 
 为了更好地统一测试，我们需要你的负载均衡器采用标准的配置文件启动，如：
 
