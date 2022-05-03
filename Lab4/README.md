@@ -33,11 +33,33 @@
 
 ---
 
-## 3. Standardized Format
+## 3. Your Tasks
+
+### Basic Version
+
+![basic version](./assets/basic.png)
+
+对于 basic 版本，你只需要运行一个 Web 服务器，与其相连的是多个存储器集群。
+
+对于 Web 服务器，我们要求：支持高并发，可以同时响应多个客户端发送的请求。
+
+对于 存储器集群，我们要求：集群数量不小于2，单个集群之间的通信可以使用 2PC 或 RAFT 协议实现。
+
+> 当存储器集群数量增多时，你需要对存储的数据进行分块，如 Course 中的部分数据可以存储在 Cluster 1 中，另一部分相关的数据可以存储在 Cluster 2 中。
+
+### Advanced Version
+
+![advanced version](./assets/advanced.png)
+
+对比 basic 版本，你需要在 basic 版本的基础上，同时运行多个 相同功能的 Web 服务器，并实现一个自己的负载均衡器，它能够对来自客户端的请求进行分流，向合适 Web 服务器转发客户端请求。
+
+---
+
+## 4. Standardized Format
 
 为了更好的进行测试与评阅，我们将对实验过程中的一些数据格式进行标准规定，请确保你实现的最终系统在这些对外接口上是我们的标准一致的。
 
-### 3.1 Web Server
+### 4.1 Web Server
 
 Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请求，并根据需要向下查询数据库获取数据后响应给 Clients。
 
@@ -180,7 +202,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 | --- | --- | --- | --- |
 | invalid or can't get result | 403 | application/json | {"status":"error", "message":`error message`} |
 
-## 3.2 Database
+## 4.2 Database
 
 ### Tables
 
@@ -260,25 +282,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 127.0.0.1:8081
 ```
 
-## 4. Your Tasks
-
-### Basic Version
-
-![basic version](./assets/basic.png)
-
-对于 basic 版本，你只需要运行一个 Web 服务器，与其相连的是多个存储器集群。
-
-对于 Web 服务器，我们要求：支持高并发，可以同时响应多个客户端发送的请求。
-
-对于 存储器集群，我们要求：集群数量不小于2，单个集群之间的通信可以使用 2PC 或 RAFT 协议实现。
-
-> 当存储器集群数量增多时，你需要对存储的数据进行分块，如 Course 中的部分数据可以存储在 Cluster 1 中，另一部分相关的数据可以存储在 Cluster 2 中。
-
-### Advanced Version
-
-![advanced version](./assets/advanced.png)
-
-对比 basic 版本，你需要在 basic 版本的基础上，同时运行多个 相同功能的 Web 服务器，并实现一个自己的负载均衡器，它能够对来自客户端的请求进行分流，向合适 Web 服务器转发客户端请求。
+---
 
 ## 5. Test
 
@@ -307,11 +311,15 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 
 类似之前的实验，我们提供了[测试程序](https://github.com/LabCloudComputing/course-system-tester)，请仔细阅读 Lab 4 实验文档和测试程序文档后使用。
 
+---
+
 ## 6. Lab submission
 
 将你的代码提交到 `/Lab4/` 文件夹，并编写 `Makefile` 确保可以直接使用 `make` 命令编译所有需要的可执行文件。
 
 考虑到 `Lab 4` 实现完整系统较为复杂，验收可能会存在额外问题，请在提交代码的同时，编写一份 `intro.md` ，并添加一些说明，如：如何编译，如何运行你的程序；是否运用了其他依赖库，如何安装依赖；如何管理数据库，实现数据分块等。
+
+---
 
 ## 7. Grading standards
 
