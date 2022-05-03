@@ -300,7 +300,7 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 2. 项目的根目录下可以使用 `make` 命令直接编译所有模块
    
 3. 可执行文件分为 Web 服务器 和 存储器集群两个部分，其中
-    -  Web 服务器可执行文件为 `web-server`，支持 `--ip`, `--port` 等命令行参数 
+    -  Web 服务器可执行文件为 `web-server`，支持 `--ip`, `--port`, `--config_path` 等命令行参数 
     -  存储器 可执行文件为 `store-server`，支持 `--config_path` 等命令行参数，并使用配置文件 `coordinator.conf` 或 `participant.conf` 进行配置
     - 测试中，每个集群的存储服务器数量为 4。
     - 如果你实现了 `Load Balancer`，其可执行文件请命名为 `load-balancer`，支持 `--ip --port --config_path` 等命令行参数
