@@ -219,11 +219,9 @@ Web 服务器对外与 Clients 进行交互，负责解析来自 Clients 的请�
 ```
 course ./data/courses.txt
 student ./data/students.txt
-mode coordinator
+mode participant
+participant_info 127.0.0.1:8002
 coordinator_info 127.0.0.1:8001
-participant_info 127.0.0.1:8002 
-participant_info 127.0.0.1:8003 
-participant_info 127.0.0.1:8004
 ```
 
 对 raft 版本，
