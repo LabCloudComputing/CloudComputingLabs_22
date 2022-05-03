@@ -277,7 +277,7 @@ coordinator_info 127.0.0.1:8001
 
 特别的，可以一次查询所有的课程最大容量信息:
 
-发送 `GET Course Capacity all\n`, e.g., `GET Course Capacity all\n`；
+发送 `GET Course all\n`, e.g., `GET Course all\n`；
 
 返回 **多行** `[course id] [course name] [course capacity] [selected number]\n`, e.g., `CS04008 计算机网络 90 80\nCS06142 云计算技术 120 120\n`。
 
